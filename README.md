@@ -79,7 +79,7 @@ When the user choosed the bank you can prepare the payment. You will need to use
   }
 ?>
 ```
-#Checking to payment
+#Checking a payment
 After the user is redirected back to your site, you can check the payment on your returnurl and reporturl by using the checkPayment() method. This will return true when the payment is succesfull and false when the payment failed or has been cancelled.
 ```php
 <?php
