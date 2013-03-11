@@ -12,7 +12,7 @@
 		 */
 		private $options = array(
 			'layoutcode'=>null,
-			'test'=>true
+			'test'=>false
 		);
 
 		/**
@@ -126,7 +126,7 @@
 		 * @param  string $language    The language (default: nl)
 		 * @return bool              True when payment is prepared false when payment preparation has failed.
 		 */
-		public function preparePayment($bank,$description,$amount,$returnurl,$reporturl,$language='nl') {
+		public function preparePayment($bank,$description,$amount,$returnurl,$reporturl=null,$language='nl') {
 			
 			$url = 'https://www.targetpay.com/ideal/start';
 			
@@ -142,7 +142,7 @@
 			$url .= '&amount='.urlencode(round($amount));
 			$url .= '&language='.urlencode($language);
 			$url .= '&returnurl='.urlencode($returnurl);
-			$url .= '&reporturl='.urlencode($reporturl);
+			if($reporturl != null) $url .= '&reporturl='.urlencode($reporturl);
 			$response = file_get_contents($url);
 
 			$aResponse = explode('|',$response);
