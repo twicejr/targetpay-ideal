@@ -7,7 +7,7 @@
 	class TargetpayIdeal {
 
 		/**
-		 * Options for the targetpay API
+		 * Options for the targetpay iDEAL API
 		 * @var array
 		 */
 		private $options = array(
@@ -32,6 +32,26 @@
 		 * @var string
 		 */
 		private $transactionID = null;
+
+
+		/**
+		 * Constructor for Targatpay iDEAL API class
+		 * @param array $options The options for this iDEAL API class.
+		 */	
+		public function __construct($options = array()) {
+			$this->setOptions($options);
+		}
+
+
+		/**
+		 * Set the options for the Targetpay API class
+		 * @param array $options The options
+		 */
+		public function setOptions(array $options) {
+			foreach($options as $name=>$value) {
+				$this->setOption($name,$value);
+			}
+		}
 
 		/**
 		 * Set an Targetpay API Option
@@ -155,7 +175,12 @@
 			return $this->transactionID;
 		}
 
-
+		/**
+		 * Check an payment
+		 * @param  string  $transactionID The transaction ID
+		 * @param  boolean $once          Check only once
+		 * @return boolean                 True when payment is successful, false when unsucesfull
+		 */
 		public function checkPayment($transactionID,$once=true) {
 			$url = 'https://www.targetpay.com/ideal/check';
 			
