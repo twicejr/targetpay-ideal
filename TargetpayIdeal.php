@@ -32,7 +32,13 @@
 		 * @var string
 		 */
 		private $transactionID = null;
-
+                
+                
+                /**
+                 * After (trying to) create transaction it contains the response.
+                 * @var string 
+                 */
+                private $response = null;
 
 		/**
 		 * Constructor for Targatpay iDEAL API class
@@ -143,11 +149,10 @@
 			$url .= '&language='.urlencode($language);
 			$url .= '&returnurl='.urlencode($returnurl);
 			if($reporturl != null) $url .= '&reporturl='.urlencode($reporturl);
-			$response = file_get_contents($url);
-
-			$aResponse = explode('|',$response);
+			$this->response = file_get_contents($url);
+                        
+			$aResponse = explode('|',$this->response);
 			if (!isset($aResponse[1])) return false;
-
 			$responseType = explode (' ',$aResponse[0]);
 
 			if($responseType[0] != "000000") return false;
@@ -158,6 +163,11 @@
 			return true;
 
 		}
+                
+                public function getResponse()
+                {
+                    return $this->response;
+                }
 
 		/**
 		 * Returns the transaction url, null when payment is not prepared.
