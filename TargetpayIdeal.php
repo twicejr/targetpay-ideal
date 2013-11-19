@@ -59,7 +59,7 @@
 		 * @param string $value The value of the Option
 		 */
 		public function setOption($name,$value) {
-			if(!isset($this->options[$name])) throw new TargetpayIdeal_Exception('Option "'.$name.'" not found');
+			if(!array_key_exists($name, $this->options)) throw new TargetpayIdeal_Exception('Option "'.$name.'" not found');
 
 			$this->options[$name] = $value;
 		}
@@ -71,7 +71,7 @@
 		 * @return string       The value of the option
 		 */
 		public function getOption($name) {
-			if(!isset($this->options[$name])) throw new TargetpayIdeal_Exception('Option "'.$name.'" not found');
+			if(!array_key_exists($name, $this->options)) throw new TargetpayIdeal_Exception('Option "'.$name.'" not found');
 
 			return $this->options[$name] = $value;
 		}
