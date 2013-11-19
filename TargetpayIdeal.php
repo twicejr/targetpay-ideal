@@ -71,7 +71,7 @@
 		 * @return string       The value of the option
 		 */
 		public function getOption($name) {
-			if(!isset($name, $this->options)) throw new TargetpayIdeal_Exception('Option "'.$name.'" not found');
+			if(!isset($this->options[$name])) throw new TargetpayIdeal_Exception('Option "'.$name.'" not found');
 
 			return $this->options[$name] = $value;
 		}
