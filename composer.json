@@ -1,8 +1,7 @@
 {
-    "name": "twicejr/targetpay-ideal",
+    "name": "keimwebsolutions/targetpay-ideal",
     "homepage": "https://github.com/keimwebsolutions/targetpay-ideal",
-    "description": "Targetpay Ideal class from Keimwebsolutions.",
-    "license": "License as found on original code at https://github.com/keimwebsolutions/targetpay-ideal",
+    "description": "Targetpay Ideal class made by Keimwebsolutions.",
     "require": {
         "php": ">=5.1.0"
     },
