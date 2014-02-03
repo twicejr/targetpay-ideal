@@ -1,10 +1,11 @@
 <?php
+    namespace Targetpay;
 	/**
 	 * Targetpay iDEAL class
 	 * @author Keim Websolutions (info@keimwebsolutions.nl)
 	 * @copyright Free to use, edit and distrubute with your changes. Please keep my author name.
 	 */
-	class TargetpayIdeal {
+	class Ideal {
 
 		/**
 		 * Options for the targetpay iDEAL API
@@ -65,7 +66,7 @@
 		 * @param string $value The value of the Option
 		 */
 		public function setOption($name,$value) {
-			if(!array_key_exists($name, $this->options)) throw new TargetpayIdeal_Exception('Option "'.$name.'" not found');
+			if(!array_key_exists($name, $this->options)) throw new \Targetpay\Ideal_Exception('Option "'.$name.'" not found');
 
 			$this->options[$name] = $value;
 		}
@@ -77,7 +78,7 @@
 		 * @return string       The value of the option
 		 */
 		public function getOption($name) {
-			if(!isset($this->options[$name])) throw new TargetpayIdeal_Exception('Option "'.$name.'" not found');
+			if(!isset($this->options[$name])) throw new \Targetpay\Ideal_Exception('Option "'.$name.'" not found');
 
 			return $this->options[$name] = $value;
 		}
@@ -97,9 +98,9 @@
 
 			$contents = file_get_contents($url);
 
-			$xml = new SimpleXMLElement($contents);
+			$xml = new \SimpleXMLElement($contents);
 
-			if(count($xml->issuer) < 1) throw new TargetpayIdeal_Exception('Error while parsing returned XML with the support banks');
+			if(count($xml->issuer) < 1) throw new \Targetpay\Ideal_Exception('Error while parsing returned XML with the support banks');
 
 			$this->banks = array();
 
@@ -138,9 +139,9 @@
 			
 			$rtlo = $this->options['layoutcode'];
 
-			if(!$this->bankExists($bank)) throw new TargetpayIdeal_Exception("Bank not supported");
+			if(!$this->bankExists($bank)) throw new \Targetpay\Ideal_Exception("Bank not supported");
 
-			if($amount < 84 || $amount > 1000000) throw new TargetpayIdeal_Exception("The amount must be in cents. And be minimal 84 cents and maximal 1000000 cents.");			
+			if($amount < 84 || $amount > 1000000) throw new \Targetpay\Ideal_Exception("The amount must be in cents. And be minimal 84 cents and maximal 1000000 cents.");			
 
 			$url .= '?rtlo='.urlencode($rtlo);
 			$url .= '&bank='.urlencode($bank);
@@ -209,6 +210,3 @@
 
 
 	}
-
-
-	class TargetpayIdeal_Exception extends Exception {}

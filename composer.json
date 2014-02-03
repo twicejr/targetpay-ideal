@@ -6,6 +6,8 @@
         "php": ">=5.1.0"
     },
     "autoload": {
-        "files": ["TargetpayIdeal.php"]
+        "psr-0": {
+             "Targetpay": ""
+        }
     }
 }
